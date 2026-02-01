@@ -33,13 +33,6 @@ def generate_launch_description():
         }]
     )
 
-    node_joint_state_publisher = Node(
-        package='joint_state_publisher',
-        executable='joint_state_publisher',
-        output='screen',
-        parameters=[{'use_sim_time': True}]
-    )
-
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py')
@@ -66,6 +59,7 @@ def generate_launch_description():
         arguments=[
             '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
             "/trunk_imu@sensor_msgs/msg/Imu@gz.msgs.IMU",
+            '/joint_states@sensor_msgs/msg/JointState[gz.msgs.Model',
         ],
         output='screen'
     )
@@ -81,7 +75,6 @@ def generate_launch_description():
     return LaunchDescription([
         gz_resource_path,
         node_robot_state_publisher,
-        node_joint_state_publisher,
         gazebo,
         spawn_entity,
         bridge,
