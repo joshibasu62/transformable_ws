@@ -1,0 +1,12 @@
+<launch>
+  <!-- Use simulated time -->
+  <param name="use_sim_time" value="true" />
+
+  <!-- Start the motor controller for keyboard -->
+  <node name="teleop_controller_1" pkg="motor_controller" type="teleop_controller" output="screen" />
+  <!-- <node name="teleop_controller" pkg="motor_controller" type="teleop_controller" output="screen" /> -->
+  <!-- Start teleop_twist_keyboard -->
+  <node name="teleop_twist_keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen">
+    <remap from="/cmd_vel" to="/cmd_vel" />
+  </node>
+</launch>

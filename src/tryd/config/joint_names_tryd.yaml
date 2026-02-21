@@ -1,0 +1,1 @@
+controller_joint_names: ['', 'j2_rf', 'j1_rf', 'j3_rf1', 'j3_rf2', 'j3_rf3', 'j4_rf1', 'j4_rf2', 'j4_rf3', 'j2_lf', 'j1_lf', 'j3_lf1', 'j3_lf2', 'j3_lf3', 'j4_lf1', 'j4_lf2', 'j4_lf3', 'j2_rh', 'j1_rh', 'j3_rh1', 'j3_rh2', 'j3_rh3', 'j4_rh1', 'j4_rh2', 'j4_rh3', 'j2_lh', 'j1_lh', 'j3_lh3', 'j3_lh2', 'j3_lh1', 'j4_lh1', 'j4_lh2', 'j4_lh3', ]

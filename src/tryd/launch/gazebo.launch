@@ -1,0 +1,44 @@
+<launch>
+  <arg name="paused" default="true"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="rname" default="tryd"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="wname" default="stairs_gai"/>
+
+  <param name="robot_description" textfile="$(find tryd)/urdf/tryd.urdf" />
+
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find tryd)/worlds/$(arg wname).world"/>
+        <arg name="debug" value="$(arg debug)"/>
+        <arg name="gui" value="$(arg gui)"/>
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+        <arg name="headless" value="$(arg headless)"/>
+    </include>
+
+    <!-- <param name="cmdTimeout" value="5.0" /> -->
+
+    <node pkg="gazebo_ros" type="spawn_model" name="urdf_spawner" respawn="false" output="screen"
+          args="-param robot_description -urdf -model tryd -z 0.2"/>
+
+    <!-- Load joint controller configurations from YAML file to parameter server -->
+    <rosparam file="$(find tryd)/config/controllers.yaml" command="load"/>
+
+    <!-- load the controllers -->
+  <node pkg="controller_manager" type="spawner" name="controller_spawner" respawn="false"
+        output="screen" ns="/tryd" args="joint_state_controller
+        joint_1_controller joint_2_controller joint_3_controller joint_4_controller 
+        joint_5_controller joint_6_controller joint_7_controller joint_8_controller"/>
+
+    <!-- convert joint states to TF transforms for rviz, etc -->
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"
+          respawn="false" output="screen">
+        <remap from="/joint_states" to="/tryd_gazebo/joint_states"/>
+    </node>
+</launch>
+       
+   
+     <!-- joint_3_controller joint_4_controller 
+        joint_5_controller joint_6_controller joint_7_controller joint_8_controller -->

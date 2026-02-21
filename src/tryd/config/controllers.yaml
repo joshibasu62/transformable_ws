@@ -1,0 +1,48 @@
+tryd:
+    # Publish all joint states -----------------------------------
+    joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 1000  
+
+    joint_1_controller:
+        type: unitree_legged_control/UnitreeJointController
+        joint: j1_rf  
+        pid: {p: 10.0, i: 0.0, d: 1.0}
+
+    joint_2_controller:
+        type: unitree_legged_control/UnitreeJointController
+        joint: j2_rf
+        pid: {p: 10.0, i: 0.0, d: 1.0}
+
+    joint_3_controller:
+        type: unitree_legged_control/UnitreeJointController
+        joint: j1_lf
+        pid: {p: 10.0, i: 0.0, d: 1.0}
+
+    joint_4_controller:
+        type: unitree_legged_control/UnitreeJointController
+        joint: j2_lf
+        pid: {p: 10.0, i: 0.0, d: 1.0}
+
+    joint_5_controller:
+        type: unitree_legged_control/UnitreeJointController
+        joint: j1_rh
+        pid: {p: 10.0, i: 0.0, d: 1.0}
+
+    joint_6_controller:
+        type: unitree_legged_control/UnitreeJointController
+        joint: j2_rh
+        pid: {p: 10.0, i: 0.0, d: 1.0}
+
+    joint_7_controller:
+        type: unitree_legged_control/UnitreeJointController
+        joint: j1_lh
+        pid: {p: 10.0, i: 0.0, d: 1.0}
+
+    joint_8_controller:
+        type: unitree_legged_control/UnitreeJointController
+        joint: j2_lh
+        pid: {p: 10.0, i: 0.0, d: 1.0}
+
+    # PlanarMovePlugin:
+    # cmdTimeout: 5.0  # Set the timeout to 5 seconds (or whatever value makes sense)
